@@ -49,16 +49,30 @@ class Publishers(Model):
     title = models.CharField(max_length=255)
 
 
+# class Products(Model):
+#     title = models.CharField(max_length=255)
+#     description = models.TextField()
+#     platform = models.ForeignKey(Platforms, on_delete=models.CASCADE)
+#     publisher = models.ForeignKey(Publishers, on_delete=models.CASCADE)
+#     releaseDate = models.DateField()
+#     price = models.IntegerField()
+#     contentRating = models.ForeignKey(ContentRatings, on_delete=models.CASCADE)
+#     genre = models.ForeignKey(Genres, on_delete=models.CASCADE)
+#     isAvailable = models.BooleanField()
+
+
+
 class Products(Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    platform = models.ForeignKey(Platforms, on_delete=models.CASCADE)
+    platform = models.ManyToManyField(Platforms)
     publisher = models.ForeignKey(Publishers, on_delete=models.CASCADE)
     releaseDate = models.DateField()
     price = models.IntegerField()
     contentRating = models.ForeignKey(ContentRatings, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genres, on_delete=models.CASCADE)
+    genre = models.ManyToManyField(Genres)
     isAvailable = models.BooleanField()
+
 
 
 class discount(Model):
